@@ -34,8 +34,13 @@
 
   <style>
 
-    body{
+    *{
       margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
       font-family:Inter,sans-serif;
       background:#020617;
       color:white;
@@ -50,7 +55,13 @@
     .glass{
       background:rgba(255,255,255,.06);
       backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
       border:1px solid rgba(255,255,255,.08);
+    }
+
+    .sidebar-link{
+      color:#cbd5e1;
+      transition:.3s;
     }
 
     .sidebar-link.active{
@@ -61,6 +72,7 @@
 
     .sidebar-link:hover{
       background:rgba(255,255,255,.05);
+      color:white;
     }
 
     .card-hover{
@@ -73,6 +85,18 @@
 
     .mobile-nav a.active{
       color:white;
+    }
+
+    input{
+      color:white;
+    }
+
+    input::placeholder{
+      color:#64748b;
+    }
+
+    button{
+      cursor:pointer;
     }
 
     ::-webkit-scrollbar{
@@ -88,6 +112,22 @@
 </head>
 
 <body>
+
+<script>
+
+  /*
+  ==========================================
+  LOGIN CHECK
+  ==========================================
+  */
+
+  const isLogin = localStorage.getItem('os_login');
+
+  if(isLogin !== 'true'){
+    window.location.href = 'login.html';
+  }
+
+</script>
 
 <div class="flex min-h-screen">
 
@@ -131,7 +171,7 @@
     <nav class="flex flex-col gap-2">
 
       <a href="dashboard.html"
-         class="sidebar-link active flex items-center gap-3 p-4 rounded-2xl transition">
+         class="sidebar-link active flex items-center gap-3 p-4 rounded-2xl">
 
         <i data-lucide="layout-dashboard"></i>
         Dashboard
@@ -139,7 +179,7 @@
       </a>
 
       <a href="profile.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
 
         <i data-lucide="user"></i>
         Profile
@@ -147,7 +187,7 @@
       </a>
 
       <a href="scanner.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
 
         <i data-lucide="scan"></i>
         Scanner
@@ -155,37 +195,37 @@
       </a>
 
       <a href="ai.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
 
         <i data-lucide="bot"></i>
         AI Assistant
 
       </a>
 
-      <a href="#"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+      <a href="finance.html"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
 
         <i data-lucide="wallet"></i>
         Keuangan
 
       </a>
 
-      <a href="#"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+      <a href="relations.html"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
 
         <i data-lucide="users"></i>
         Relasi
 
       </a>
 
-      <a href="login.html"
+      <button
          onclick="logout()"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl text-left bg-transparent border-none">
 
         <i data-lucide="log-out"></i>
         Logout
 
-      </a>
+      </button>
 
     </nav>
 
@@ -544,7 +584,7 @@
 
           </a>
 
-          <a href="#"
+          <a href="finance.html"
              class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
 
             <i data-lucide="wallet" class="w-8 h-8 text-green-400"></i>
@@ -555,7 +595,7 @@
 
           </a>
 
-          <a href="#"
+          <a href="relations.html"
              class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
 
             <i data-lucide="users" class="w-8 h-8 text-yellow-400"></i>
@@ -601,10 +641,10 @@
 <!-- MOBILE NAV -->
 <nav class="mobile-nav md:hidden fixed bottom-0 left-0 right-0 glass border-t border-white/10 z-50">
 
-  <div class="grid grid-cols-4 h-20">
+  <div class="grid grid-cols-5 h-20">
 
     <a href="dashboard.html"
-       class="flex flex-col items-center justify-center gap-1 text-slate-400 active">
+       class="flex flex-col items-center justify-center gap-1 text-white active">
 
       <i data-lucide="layout-dashboard"></i>
 
@@ -636,6 +676,17 @@
 
     </a>
 
+    <a href="finance.html"
+       class="flex flex-col items-center justify-center gap-1 text-slate-400">
+
+      <i data-lucide="wallet"></i>
+
+      <span class="text-xs">
+        Finance
+      </span>
+
+    </a>
+
     <a href="profile.html"
        class="flex flex-col items-center justify-center gap-1 text-slate-400">
 
@@ -655,7 +706,12 @@
 
   lucide.createIcons();
 
-  // SIDEBAR ACTIVE
+  /*
+  ==========================================
+  ACTIVE SIDEBAR
+  ==========================================
+  */
+
   const links = document.querySelectorAll('.sidebar-link');
 
   links.forEach(link => {
@@ -668,23 +724,26 @@
 
   });
 
-  // LOGIN CHECK
-  if(localStorage.getItem('os_login') !== 'true'){
+  /*
+  ==========================================
+  LOGOUT
+  ==========================================
+  */
+
+  function logout(){
+
+    localStorage.removeItem('os_login');
 
     window.location.href = 'login.html';
 
   }
 
-  // LOGOUT
-  function logout(){
+  /*
+  ==========================================
+  PWA
+  ==========================================
+  */
 
-    localStorage.removeItem('os_login');
-
-    window.location.href='login.html';
-
-  }
-
-  // PWA
   if ('serviceWorker' in navigator) {
 
     navigator.serviceWorker.register('./sw.js');
@@ -695,4 +754,3 @@
 
 </body>
 </html>
-
