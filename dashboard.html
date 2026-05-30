@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id" data-theme="light">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Dashboard - About Me OS</title>
 
-  <meta name="theme-color" content="#e3000f" />
-
   <!-- PWA -->
+  <meta name="theme-color" content="#e3000f">
   <link rel="manifest" href="manifest.json">
 
   <!-- Tailwind -->
@@ -20,15 +19,7 @@
 
   <script>
     tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#e3000f',
-            darkbg: '#020617'
-          }
-        }
-      }
+      darkMode: 'class'
     }
   </script>
 
@@ -40,91 +31,133 @@
       box-sizing:border-box;
     }
 
+    :root{
+
+      --bg:#f1f5f9;
+      --card:#ffffffcc;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --sidebar:#ffffffaa;
+      --primary:#e3000f;
+
+    }
+
+    .dark{
+
+      --bg:#020617;
+      --card:#0f172acc;
+      --text:#ffffff;
+      --muted:#94a3b8;
+      --border:#1e293b;
+      --sidebar:#0f172acc;
+      --primary:#ff1f2d;
+
+    }
+
     body{
+
       font-family:Inter,sans-serif;
-      background:#020617;
-      color:white;
+      background:var(--bg);
+      color:var(--text);
       min-height:100vh;
       overflow-x:hidden;
+      transition:.3s;
 
       background-image:
-        radial-gradient(at top left,#3b0a0a 0%,transparent 50%),
-        radial-gradient(at bottom right,#1e293b 0%,transparent 50%);
+      radial-gradient(circle at top right,
+      rgba(255,0,0,.12),
+      transparent 30%),
+
+      radial-gradient(circle at bottom left,
+      rgba(99,102,241,.10),
+      transparent 30%);
+
     }
 
     .glass{
-      background:rgba(255,255,255,.06);
+
+      background:var(--card);
       backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid var(--border);
+
     }
 
-    .sidebar-link{
-      color:#cbd5e1;
+    .sidebar{
+
+      background:var(--sidebar);
+      backdrop-filter:blur(25px);
+      border-right:1px solid var(--border);
+
+    }
+
+    .menu{
+
       transition:.3s;
+      color:var(--muted);
+
     }
 
-    .sidebar-link.active{
-      background:rgba(227,0,15,.2);
-      border:1px solid rgba(227,0,15,.3);
-      color:white;
+    .menu:hover{
+
+      background:rgba(227,0,15,.08);
+      color:var(--primary);
+
     }
 
-    .sidebar-link:hover{
-      background:rgba(255,255,255,.05);
-      color:white;
+    .menu.active{
+
+      background:rgba(227,0,15,.12);
+      color:var(--primary);
+      font-weight:700;
+
     }
 
-    .card-hover{
+    .card{
+
       transition:.3s;
+
     }
 
-    .card-hover:hover{
+    .card:hover{
+
       transform:translateY(-4px);
+
     }
 
-    .mobile-nav a.active{
-      color:white;
-    }
+    .theme-btn{
 
-    input{
-      color:white;
-    }
-
-    input::placeholder{
-      color:#64748b;
-    }
-
-    button{
+      width:52px;
+      height:52px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:none;
+      background:white;
       cursor:pointer;
+
     }
 
-    ::-webkit-scrollbar{
-      width:6px;
-    }
+    .dark .theme-btn{
 
-    ::-webkit-scrollbar-thumb{
-      background:#334155;
-      border-radius:20px;
+      background:#0f172a;
+
     }
 
   </style>
+
 </head>
 
 <body>
 
 <script>
 
-  /*
-  ==========================================
-  LOGIN CHECK
-  ==========================================
-  */
+  // LOGIN CHECK
+  if(localStorage.getItem('os_login') !== 'true'){
 
-  const isLogin = localStorage.getItem('os_login');
+    window.location.href='login.html';
 
-  if(isLogin !== 'true'){
-    window.location.href = 'login.html';
   }
 
 </script>
@@ -132,38 +165,26 @@
 <div class="flex min-h-screen">
 
   <!-- SIDEBAR -->
-  <aside class="hidden md:flex flex-col w-[280px] p-5 glass border-r border-white/10">
+  <aside class="sidebar hidden lg:flex flex-col w-[270px] p-6">
 
     <!-- LOGO -->
-    <div class="flex items-center gap-3 mb-8">
+    <div class="flex items-center gap-4 mb-10">
 
-      <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-red-900/50">
+      <div class="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center shadow-xl shadow-red-500/30 text-white">
         <i data-lucide="command"></i>
       </div>
 
       <div>
-        <h1 class="font-bold text-xl">
-          About Me OS
+
+        <h1 class="font-bold text-2xl">
+          About Me <span class="text-red-600">OS</span>
         </h1>
 
-        <p class="text-xs text-slate-400">
-          Personal Operating System
+        <p class="text-sm text-slate-500">
+          Personal Workspace
         </p>
+
       </div>
-
-    </div>
-
-    <!-- SEARCH -->
-    <div class="relative mb-6">
-
-      <i data-lucide="search"
-         class="absolute left-3 top-3 w-4 h-4 text-slate-400"></i>
-
-      <input
-        type="text"
-        placeholder="Pencarian..."
-        class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-3 pl-10 pr-4 outline-none"
-      />
 
     </div>
 
@@ -171,39 +192,15 @@
     <nav class="flex flex-col gap-2">
 
       <a href="dashboard.html"
-         class="sidebar-link active flex items-center gap-3 p-4 rounded-2xl">
+         class="menu active flex items-center gap-4 p-4 rounded-2xl">
 
         <i data-lucide="layout-dashboard"></i>
-        Dashboard
-
-      </a>
-
-      <a href="profile.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
-
-        <i data-lucide="user"></i>
-        Profile
-
-      </a>
-
-      <a href="scanner.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
-
-        <i data-lucide="scan"></i>
-        Scanner
-
-      </a>
-
-      <a href="ai.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
-
-        <i data-lucide="bot"></i>
-        AI Assistant
+        Beranda
 
       </a>
 
       <a href="finance.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
+         class="menu flex items-center gap-4 p-4 rounded-2xl">
 
         <i data-lucide="wallet"></i>
         Keuangan
@@ -211,122 +208,122 @@
       </a>
 
       <a href="relations.html"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl">
+         class="menu flex items-center gap-4 p-4 rounded-2xl">
 
         <i data-lucide="users"></i>
         Relasi
 
       </a>
 
-      <button
-         onclick="logout()"
-         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl text-left bg-transparent border-none">
+      <a href="scanner.html"
+         class="menu flex items-center gap-4 p-4 rounded-2xl">
 
-        <i data-lucide="log-out"></i>
-        Logout
+        <i data-lucide="scan"></i>
+        Scanner
 
-      </button>
+      </a>
+
+      <a href="ai.html"
+         class="menu flex items-center gap-4 p-4 rounded-2xl">
+
+        <i data-lucide="bot"></i>
+        AI Chat
+
+      </a>
+
+      <a href="profile.html"
+         class="menu flex items-center gap-4 p-4 rounded-2xl">
+
+        <i data-lucide="user"></i>
+        Profile
+
+      </a>
 
     </nav>
 
-    <!-- USER -->
-    <div class="mt-auto glass rounded-3xl p-4 flex items-center gap-3">
+    <!-- FOOT -->
+    <div class="mt-auto">
 
-      <img
-        src="https://ui-avatars.com/api/?name=Admin+OS&background=e3000f&color=fff"
-        class="w-12 h-12 rounded-full"
-      />
+      <!-- THEME -->
+      <button
+        onclick="toggleTheme()"
+        class="glass w-full rounded-2xl p-4 flex items-center gap-3 mb-4">
 
-      <div>
-        <p class="font-semibold text-sm">
-          Admin User
-        </p>
+        <i data-lucide="moon"></i>
+        Dark Mode
 
-        <p class="text-xs text-slate-400">
-          Workspace Owner
-        </p>
+      </button>
+
+      <!-- PROFILE -->
+      <div class="glass rounded-3xl p-4 flex items-center gap-3">
+
+        <div class="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center text-xl">
+          AO
+        </div>
+
+        <div>
+
+          <h3 class="font-bold">
+            Admin User
+          </h3>
+
+          <p class="text-sm text-slate-500">
+            admin@os.me
+          </p>
+
+        </div>
+
       </div>
 
     </div>
 
   </aside>
 
-  <!-- MAIN -->
-  <main class="flex-1 p-4 md:p-8 pb-24 md:pb-8">
-
-    <!-- TOPBAR -->
-    <header class="glass rounded-3xl p-4 mb-6 flex items-center justify-between">
-
-      <div>
-
-        <p class="text-slate-400 text-sm">
-          Selamat Datang
-        </p>
-
-        <h2 class="text-2xl md:text-3xl font-bold">
-          Dashboard Personal OS
-        </h2>
-
-      </div>
-
-      <div class="flex items-center gap-3">
-
-        <button class="w-12 h-12 rounded-2xl glass flex items-center justify-center">
-
-          <i data-lucide="bell"></i>
-
-        </button>
-
-        <button class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-red-900/50">
-
-          <i data-lucide="plus"></i>
-
-        </button>
-
-      </div>
-
-    </header>
+  <!-- CONTENT -->
+  <main class="flex-1 p-6 lg:p-8">
 
     <!-- HERO -->
-    <section class="glass rounded-[32px] p-8 mb-6 overflow-hidden relative">
+    <section class="glass rounded-[32px] p-8 mb-8 relative overflow-hidden">
 
-      <div class="absolute right-0 top-0 opacity-10">
-        <i data-lucide="hexagon" class="w-64 h-64"></i>
+      <div class="absolute top-0 right-0 opacity-10">
+        <i data-lucide="hexagon" class="w-56 h-56"></i>
       </div>
 
       <div class="relative z-10">
 
-        <p class="text-slate-300 mb-2">
-          Workspace Aktif
+        <p class="text-sm text-slate-500 mb-2">
+          Status Keuangan Bulan Ini
         </p>
 
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">
-          About Me OS
+        <h1 class="text-5xl font-bold mb-8">
+          Rp 12.500.000
         </h1>
 
-        <p class="text-slate-400 max-w-2xl leading-relaxed mb-6">
-          Sistem dashboard personal untuk mengatur produktivitas,
-          keuangan, AI assistant, OCR scanner,
-          bisnis, relasi dan workspace modern.
-        </p>
+        <div class="grid md:grid-cols-2 gap-4">
 
-        <div class="flex flex-wrap gap-3">
+          <div class="bg-white/10 rounded-2xl p-5">
 
-          <span class="px-4 py-2 rounded-full bg-red-500/20 text-red-300 text-sm">
-            PWA Ready
-          </span>
+            <p class="text-sm text-slate-300">
+              Pemasukan
+            </p>
 
-          <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm">
-            Offline First
-          </span>
+            <h2 class="text-2xl font-bold">
+              + Rp 15M
+            </h2>
 
-          <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm">
-            AI Powered
-          </span>
+          </div>
 
-          <span class="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm">
-            Modular System
-          </span>
+          <div class="bg-white/10 rounded-2xl p-5">
+
+            <p class="text-sm text-slate-300">
+              Pengeluaran
+            </p>
+
+            <h2 class="text-2xl font-bold">
+              - Rp 2.5M
+            </h2>
+
+          </div>
 
         </div>
 
@@ -334,301 +331,58 @@
 
     </section>
 
-    <!-- GRID -->
-    <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <!-- QUICK -->
+    <section class="mb-10">
 
-      <!-- PROFILE -->
-      <div class="glass rounded-3xl p-6 xl:col-span-2 card-hover">
+      <h2 class="text-2xl font-bold mb-6">
+        Akses Cepat
+      </h2>
 
-        <div class="flex flex-col md:flex-row md:items-center gap-6">
+      <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-5">
 
-          <img
-            src="https://ui-avatars.com/api/?name=Admin+OS&background=e3000f&color=fff"
-            class="w-32 h-32 rounded-3xl border border-white/10"
-          />
+        <a href="finance.html"
+           class="glass card rounded-3xl p-6 flex flex-col items-center gap-4">
 
-          <div class="flex-1">
-
-            <h3 class="text-3xl font-bold mb-2">
-              Admin User
-            </h3>
-
-            <p class="text-slate-400 mb-6 leading-relaxed">
-              Personal workspace untuk manajemen aktivitas,
-              keuangan, AI assistant, scanner nota,
-              relasi bisnis dan produktivitas modern.
-            </p>
-
-            <div class="grid grid-cols-2 gap-4">
-
-              <div class="glass rounded-2xl p-4">
-
-                <p class="text-slate-400 text-sm mb-1">
-                  Workspace
-                </p>
-
-                <h3 class="font-bold">
-                  Personal
-                </h3>
-
-              </div>
-
-              <div class="glass rounded-2xl p-4">
-
-                <p class="text-slate-400 text-sm mb-1">
-                  Status
-                </p>
-
-                <h3 class="font-bold text-green-400">
-                  Online
-                </h3>
-
-              </div>
-
-            </div>
-
+          <div class="w-16 h-16 rounded-2xl bg-red-100 text-red-500 flex items-center justify-center">
+            <i data-lucide="wallet"></i>
           </div>
 
-        </div>
+          Keuangan
 
-      </div>
+        </a>
 
-      <!-- WEATHER -->
-      <div class="glass rounded-3xl p-6 flex flex-col justify-between card-hover">
+        <a href="relations.html"
+           class="glass card rounded-3xl p-6 flex flex-col items-center gap-4">
 
-        <div class="flex items-center justify-between mb-6">
-
-          <h3 class="font-bold">
-            Cuaca
-          </h3>
-
-          <i data-lucide="cloud-sun"></i>
-
-        </div>
-
-        <div>
-
-          <h2 class="text-5xl font-bold mb-2">
-            30°C
-          </h2>
-
-          <p class="text-slate-400">
-            Purbosari, Jawa Timur
-          </p>
-
-        </div>
-
-      </div>
-
-      <!-- FINANCE -->
-      <div class="glass rounded-3xl p-6 card-hover">
-
-        <div class="flex items-center justify-between mb-4">
-
-          <h3 class="font-bold">
-            Keuangan
-          </h3>
-
-          <i data-lucide="wallet"></i>
-
-        </div>
-
-        <h2 class="text-3xl font-bold mb-2 text-green-400">
-          Rp 12.500.000
-        </h2>
-
-        <p class="text-green-400 text-sm mb-6">
-          +12% bulan ini
-        </p>
-
-        <div class="space-y-3">
-
-          <div class="flex justify-between text-sm">
-
-            <span class="text-slate-400">
-              Pemasukan
-            </span>
-
-            <span class="text-green-400">
-              Rp 18.000.000
-            </span>
-
+          <div class="w-16 h-16 rounded-2xl bg-blue-100 text-blue-500 flex items-center justify-center">
+            <i data-lucide="users"></i>
           </div>
 
-          <div class="flex justify-between text-sm">
+          Relasi
 
-            <span class="text-slate-400">
-              Pengeluaran
-            </span>
+        </a>
 
-            <span class="text-red-400">
-              Rp 5.500.000
-            </span>
+        <a href="scanner.html"
+           class="glass card rounded-3xl p-6 flex flex-col items-center gap-4">
 
+          <div class="w-16 h-16 rounded-2xl bg-orange-100 text-orange-500 flex items-center justify-center">
+            <i data-lucide="scan"></i>
           </div>
 
-        </div>
+          Scanner
 
-      </div>
+        </a>
 
-      <!-- AI -->
-      <div class="glass rounded-3xl p-6 card-hover">
+        <a href="ai.html"
+           class="glass card rounded-3xl p-6 flex flex-col items-center gap-4">
 
-        <div class="flex items-center justify-between mb-4">
-
-          <h3 class="font-bold">
-            AI Assistant
-          </h3>
-
-          <i data-lucide="sparkles"></i>
-
-        </div>
-
-        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-          “Ada 3 tugas prioritas hari ini dan 2 transaksi belum dikategorikan.”
-        </p>
-
-        <button
-          onclick="window.location.href='ai.html'"
-          class="w-full bg-primary hover:bg-red-700 transition p-3 rounded-2xl font-semibold">
-
-          Buka AI Assistant
-
-        </button>
-
-      </div>
-
-      <!-- TASK -->
-      <div class="glass rounded-3xl p-6 card-hover">
-
-        <div class="flex items-center justify-between mb-4">
-
-          <h3 class="font-bold">
-            Tugas
-          </h3>
-
-          <i data-lucide="check-square"></i>
-
-        </div>
-
-        <div class="space-y-4">
-
-          <div class="flex items-center gap-3">
-
-            <div class="w-5 h-5 rounded border border-white/20"></div>
-
-            <p class="text-sm">
-              Meeting Workspace
-            </p>
-
+          <div class="w-16 h-16 rounded-2xl bg-green-100 text-green-500 flex items-center justify-center">
+            <i data-lucide="bot"></i>
           </div>
 
-          <div class="flex items-center gap-3">
+          AI Chat
 
-            <div class="w-5 h-5 rounded border border-white/20"></div>
-
-            <p class="text-sm">
-              Scan nota bisnis
-            </p>
-
-          </div>
-
-          <div class="flex items-center gap-3">
-
-            <div class="w-5 h-5 rounded border border-white/20"></div>
-
-            <p class="text-sm">
-              Upload laporan bulanan
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- QUICK ACTION -->
-      <div class="glass rounded-3xl p-6 xl:col-span-3 card-hover">
-
-        <div class="flex items-center justify-between mb-6">
-
-          <h3 class="font-bold text-xl">
-            Quick Access
-          </h3>
-
-          <i data-lucide="rocket"></i>
-
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
-
-          <a href="scanner.html"
-             class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
-
-            <i data-lucide="scan-line" class="w-8 h-8 text-red-400"></i>
-
-            <span class="text-sm">
-              Scanner
-            </span>
-
-          </a>
-
-          <a href="ai.html"
-             class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
-
-            <i data-lucide="bot" class="w-8 h-8 text-blue-400"></i>
-
-            <span class="text-sm">
-              AI
-            </span>
-
-          </a>
-
-          <a href="finance.html"
-             class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
-
-            <i data-lucide="wallet" class="w-8 h-8 text-green-400"></i>
-
-            <span class="text-sm">
-              Finance
-            </span>
-
-          </a>
-
-          <a href="relations.html"
-             class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
-
-            <i data-lucide="users" class="w-8 h-8 text-yellow-400"></i>
-
-            <span class="text-sm">
-              Relasi
-            </span>
-
-          </a>
-
-          <a href="#"
-             class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
-
-            <i data-lucide="briefcase" class="w-8 h-8 text-purple-400"></i>
-
-            <span class="text-sm">
-              Bisnis
-            </span>
-
-          </a>
-
-          <a href="profile.html"
-             class="glass rounded-2xl p-5 flex flex-col items-center gap-3 hover:bg-white/10 transition">
-
-            <i data-lucide="settings" class="w-8 h-8 text-cyan-400"></i>
-
-            <span class="text-sm">
-              Setting
-            </span>
-
-          </a>
-
-        </div>
+        </a>
 
       </div>
 
@@ -638,113 +392,37 @@
 
 </div>
 
-<!-- MOBILE NAV -->
-<nav class="mobile-nav md:hidden fixed bottom-0 left-0 right-0 glass border-t border-white/10 z-50">
-
-  <div class="grid grid-cols-5 h-20">
-
-    <a href="dashboard.html"
-       class="flex flex-col items-center justify-center gap-1 text-white active">
-
-      <i data-lucide="layout-dashboard"></i>
-
-      <span class="text-xs">
-        Home
-      </span>
-
-    </a>
-
-    <a href="scanner.html"
-       class="flex flex-col items-center justify-center gap-1 text-slate-400">
-
-      <i data-lucide="scan"></i>
-
-      <span class="text-xs">
-        Scan
-      </span>
-
-    </a>
-
-    <a href="ai.html"
-       class="flex flex-col items-center justify-center gap-1 text-slate-400">
-
-      <i data-lucide="bot"></i>
-
-      <span class="text-xs">
-        AI
-      </span>
-
-    </a>
-
-    <a href="finance.html"
-       class="flex flex-col items-center justify-center gap-1 text-slate-400">
-
-      <i data-lucide="wallet"></i>
-
-      <span class="text-xs">
-        Finance
-      </span>
-
-    </a>
-
-    <a href="profile.html"
-       class="flex flex-col items-center justify-center gap-1 text-slate-400">
-
-      <i data-lucide="user"></i>
-
-      <span class="text-xs">
-        Profile
-      </span>
-
-    </a>
-
-  </div>
-
-</nav>
-
 <script>
 
   lucide.createIcons();
 
-  /*
-  ==========================================
-  ACTIVE SIDEBAR
-  ==========================================
-  */
+  // THEME
+  const savedTheme = localStorage.getItem('theme');
 
-  const links = document.querySelectorAll('.sidebar-link');
+  if(savedTheme === 'dark'){
 
-  links.forEach(link => {
-
-    if(link.href === window.location.href){
-
-      link.classList.add('active');
-
-    }
-
-  });
-
-  /*
-  ==========================================
-  LOGOUT
-  ==========================================
-  */
-
-  function logout(){
-
-    localStorage.removeItem('os_login');
-
-    window.location.href = 'login.html';
+    document.documentElement.classList.add('dark');
 
   }
 
-  /*
-  ==========================================
-  PWA
-  ==========================================
-  */
+  function toggleTheme(){
 
-  if ('serviceWorker' in navigator) {
+    document.documentElement.classList.toggle('dark');
+
+    if(document.documentElement.classList.contains('dark')){
+
+      localStorage.setItem('theme','dark');
+
+    }else{
+
+      localStorage.setItem('theme','light');
+
+    }
+
+  }
+
+  // PWA
+  if('serviceWorker' in navigator){
 
     navigator.serviceWorker.register('./sw.js');
 
