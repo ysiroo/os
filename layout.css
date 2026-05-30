@@ -1,0 +1,15 @@
+#sidebar {
+  width: 260px;
+  padding: 20px;
+}
+
+#main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Profile - About Me OS</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e3000f'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body{
+      background:#0f172a;
+      color:white;
+      font-family:Inter,sans-serif;
+      background-image:
+      radial-gradient(at top left,#3b0a0a 0%,transparent 50%),
+      radial-gradient(at bottom right,#1e293b 0%,transparent 50%);
+    }
+
+    .glass{
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen p-6">
+
+<div class="max-w-5xl mx-auto">
+
+  <div class="flex items-center justify-between mb-6">
+
+    <div>
+      <h1 class="text-3xl font-bold">Profile</h1>
+      <p class="text-slate-400">Pengaturan akun dan workspace</p>
+    </div>
+
+    <a href="dashboard.html"
+       class="px-5 py-3 rounded-2xl bg-primary hover:bg-red-700 transition">
+      Dashboard
+    </a>
+
+  </div>
+
+  <div class="glass rounded-3xl p-8">
+
+    <div class="flex flex-col md:flex-row gap-8 items-center">
+
+      <img
+        src="https://ui-avatars.com/api/?name=Admin+OS&background=e3000f&color=fff"
+        class="w-40 h-40 rounded-3xl border border-white/10"
+      />
+
+      <div class="flex-1">
+
+        <h2 class="text-4xl font-bold mb-2">Admin User</h2>
+
+        <p class="text-slate-400 mb-6 leading-relaxed">
+          Personal profile About Me OS dengan sistem workspace,
+          AI assistant, keuangan, relasi, dan dashboard produktivitas.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4">
+
+          <div class="glass rounded-2xl p-4">
+            <p class="text-slate-400 text-sm mb-1">Workspace</p>
+            <h3 class="font-bold">Personal</h3>
+          </div>
+
+          <div class="glass rounded-2xl p-4">
+            <p class="text-slate-400 text-sm mb-1">Status</p>
+            <h3 class="font-bold text-green-400">Online</h3>
+          </div>
+
+          <div class="glass rounded-2xl p-4">
+            <p class="text-slate-400 text-sm mb-1">Storage</p>
+            <h3 class="font-bold">Google Drive</h3>
+          </div>
+
+          <div class="glass rounded-2xl p-4">
+            <p class="text-slate-400 text-sm mb-1">Database</p>
+            <h3 class="font-bold">Google Sheet</h3>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

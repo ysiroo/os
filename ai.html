@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Assistant - About Me OS</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body{
+      background:#0f172a;
+      color:white;
+      font-family:Inter,sans-serif;
+    }
+
+    .glass{
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen p-6">
+
+<div class="max-w-5xl mx-auto">
+
+  <div class="flex items-center justify-between mb-6">
+
+    <div>
+      <h1 class="text-3xl font-bold">AI Assistant</h1>
+      <p class="text-slate-400">Asisten pintar personal workspace</p>
+    </div>
+
+    <a href="dashboard.html"
+       class="bg-red-600 px-5 py-3 rounded-2xl">
+      Dashboard
+    </a>
+
+  </div>
+
+  <div class="glass rounded-3xl p-6 h-[75vh] flex flex-col">
+
+    <div class="flex-1 overflow-auto space-y-5">
+
+      <div class="flex gap-3">
+
+        <div class="w-12 h-12 rounded-2xl bg-red-600 flex items-center justify-center">
+          <i data-lucide="bot"></i>
+        </div>
+
+        <div class="glass rounded-2xl p-4 max-w-lg">
+          Halo, saya AI Assistant Anda.
+        </div>
+
+      </div>
+
+      <div class="flex gap-3 justify-end">
+
+        <div class="bg-red-600 rounded-2xl p-4 max-w-lg">
+          Tampilkan laporan keuangan bulan ini
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="mt-6 flex gap-3">
+
+      <input
+        type="text"
+        placeholder="Ketik pesan..."
+        class="flex-1 bg-slate-900/50 border border-white/10 rounded-2xl px-5 py-4 outline-none"
+      >
+
+      <button class="bg-red-600 px-6 rounded-2xl">
+        Kirim
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  lucide.createIcons();
+</script>
+
+</body>
+</html>

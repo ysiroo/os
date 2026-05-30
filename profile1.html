@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Profile - About Me OS</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      background:
+        radial-gradient(circle at top left, #3b0000, transparent 30%),
+        radial-gradient(circle at bottom right, #0f172a, transparent 30%),
+        #020617;
+      font-family: Inter, sans-serif;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card-hover {
+      transition: .3s;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.15);
+    }
+  </style>
+</head>
+
+<body class="text-white min-h-screen">
+
+  <!-- Container -->
+  <div class="max-w-7xl mx-auto p-4 md:p-8">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+
+      <div>
+        <h1 class="text-3xl md:text-4xl font-bold">
+          Profile Workspace
+        </h1>
+
+        <p class="text-slate-400 mt-2">
+          Pengaturan identitas dan sistem personal About Me OS
+        </p>
+      </div>
+
+      <a href="dashboard.html"
+        class="glass px-5 py-3 rounded-2xl flex items-center gap-2 hover:bg-white/10 transition">
+
+        <i data-lucide="arrow-left"></i>
+        Dashboard
+      </a>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="glass rounded-[32px] p-6 md:p-10 mb-8">
+
+      <div class="flex flex-col lg:flex-row gap-10 items-start">
+
+        <!-- Photo -->
+        <div class="relative">
+
+          <img
+            src="https://ui-avatars.com/api/?name=Admin+OS&background=e3000f&color=fff"
+            class="w-40 h-40 rounded-[30px] object-cover border border-white/10 shadow-2xl"
+          />
+
+          <button
+            class="absolute -bottom-3 -right-3 bg-red-600 hover:bg-red-700 transition w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl">
+
+            <i data-lucide="camera"></i>
+          </button>
+        </div>
+
+        <!-- Info -->
+        <div class="flex-1">
+
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+
+            <div>
+              <h2 class="text-4xl font-bold mb-2">
+                Admin User
+              </h2>
+
+              <p class="text-slate-400 leading-relaxed max-w-2xl">
+                Personal operating system modern untuk produktivitas,
+                keuangan, AI assistant, relasi bisnis,
+                workspace management, dan pencatatan aktivitas harian.
+              </p>
+            </div>
+
+            <button
+              class="bg-red-600 hover:bg-red-700 transition px-5 py-3 rounded-2xl flex items-center gap-2 font-semibold shadow-lg shadow-red-900/40">
+
+              <i data-lucide="pencil"></i>
+              Edit Profile
+            </button>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="glass rounded-2xl p-5 card-hover">
+              <p class="text-slate-400 text-sm mb-2">
+                Workspace
+              </p>
+
+              <h3 class="text-2xl font-bold">
+                3
+              </h3>
+            </div>
+
+            <div class="glass rounded-2xl p-5 card-hover">
+              <p class="text-slate-400 text-sm mb-2">
+                Total Catatan
+              </p>
+
+              <h3 class="text-2xl font-bold">
+                248
+              </h3>
+            </div>
+
+            <div class="glass rounded-2xl p-5 card-hover">
+              <p class="text-slate-400 text-sm mb-2">
+                Kontak Relasi
+              </p>
+
+              <h3 class="text-2xl font-bold">
+                89
+              </h3>
+            </div>
+
+            <div class="glass rounded-2xl p-5 card-hover">
+              <p class="text-slate-400 text-sm mb-2">
+                Status
+              </p>
+
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+
+                <h3 class="font-bold text-green-400">
+                  Active
+                </h3>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Grid -->
+    <div class="grid lg:grid-cols-3 gap-6">
+
+      <!-- Left -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- About -->
+        <div class="glass rounded-3xl p-6">
+
+          <div class="flex items-center gap-3 mb-5">
+            <i data-lucide="user-round"></i>
+
+            <h3 class="text-xl font-bold">
+              Tentang Saya
+            </h3>
+          </div>
+
+          <p class="text-slate-300 leading-relaxed">
+            Website About Me OS ini dirancang sebagai personal operating system
+            yang modular dan scalable untuk kebutuhan personal maupun bisnis.
+            Mendukung AI assistant, OCR scanner, voice notes,
+            WhatsApp integration, Telegram sync, dashboard keuangan,
+            dan sistem multi workspace berbasis GitHub + Google Apps Script.
+          </p>
+
+        </div>
+
+        <!-- Workspace -->
+        <div class="glass rounded-3xl p-6">
+
+          <div class="flex items-center justify-between mb-5">
+
+            <div class="flex items-center gap-3">
+              <i data-lucide="layers-3"></i>
+
+              <h3 class="text-xl font-bold">
+                Workspace
+              </h3>
+            </div>
+
+            <button class="text-red-400 text-sm">
+              Tambah Workspace
+            </button>
+
+          </div>
+
+          <div class="space-y-4">
+
+            <div class="glass rounded-2xl p-4 flex items-center justify-between">
+
+              <div>
+                <h4 class="font-bold">
+                  Personal Workspace
+                </h4>
+
+                <p class="text-slate-400 text-sm">
+                  Catatan pribadi dan keuangan
+                </p>
+              </div>
+
+              <span class="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl text-sm">
+                Active
+              </span>
+
+            </div>
+
+            <div class="glass rounded-2xl p-4 flex items-center justify-between">
+
+              <div>
+                <h4 class="font-bold">
+                  Business Workspace
+                </h4>
+
+                <p class="text-slate-400 text-sm">
+                  Monitoring bisnis dan statistik
+                </p>
+              </div>
+
+              <span class="bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-sm">
+                Standby
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right -->
+      <div class="space-y-6">
+
+        <!-- AI Assistant -->
+        <div class="glass rounded-3xl p-6">
+
+          <div class="flex items-center gap-3 mb-5">
+            <i data-lucide="sparkles"></i>
+
+            <h3 class="text-xl font-bold">
+              AI Assistant
+            </h3>
+          </div>
+
+          <div class="bg-white/5 rounded-2xl p-5">
+
+            <p class="text-slate-300 leading-relaxed text-sm">
+              AI assistant siap membantu analisa keuangan,
+              OCR nota, rangkuman tugas,
+              dan manajemen produktivitas harian.
+            </p>
+
+          </div>
+
+          <button
+            class="mt-5 w-full bg-red-600 hover:bg-red-700 transition py-3 rounded-2xl font-semibold">
+
+            Open AI Assistant
+          </button>
+
+        </div>
+
+        <!-- Shortcuts -->
+        <div class="glass rounded-3xl p-6">
+
+          <div class="flex items-center gap-3 mb-5">
+            <i data-lucide="app-window"></i>
+
+            <h3 class="text-xl font-bold">
+              Quick Access
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4">
+
+            <button class="glass rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/10 transition">
+              <i data-lucide="wallet"></i>
+              <span class="text-xs">Finance</span>
+            </button>
+
+            <button class="glass rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/10 transition">
+              <i data-lucide="scan-line"></i>
+              <span class="text-xs">Scanner</span>
+            </button>
+
+            <button class="glass rounded-2xl p-4 flex flex-col items-center gap-2 hover:bg-white/10 transition">
+              <i data-lucide="message-circle"></i>
+              <span class="text-xs">WhatsApp</span>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+
+</body>
+</html>
