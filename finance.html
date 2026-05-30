@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Finance - About Me OS</title>
+
+  <meta name="theme-color" content="#e3000f" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#e3000f',
+            darkbg: '#020617'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+
+    body{
+      margin:0;
+      font-family:Inter,sans-serif;
+      background:#020617;
+      color:white;
+      min-height:100vh;
+      overflow-x:hidden;
+
+      background-image:
+      radial-gradient(at top left,#3b0a0a 0%,transparent 50%),
+      radial-gradient(at bottom right,#1e293b 0%,transparent 50%);
+    }
+
+    .glass{
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(20px);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .sidebar-link.active{
+      background:rgba(227,0,15,.2);
+      border:1px solid rgba(227,0,15,.3);
+      color:white;
+    }
+
+    .sidebar-link:hover{
+      background:rgba(255,255,255,.05);
+    }
+
+    .card-hover{
+      transition:.3s;
+    }
+
+    .card-hover:hover{
+      transform:translateY(-4px);
+    }
+
+    .income{
+      color:#22c55e;
+    }
+
+    .expense{
+      color:#ef4444;
+    }
+
+    .mobile-nav a.active{
+      color:white;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="hidden md:flex flex-col w-[280px] p-5 glass border-r border-white/10">
+
+    <!-- LOGO -->
+    <div class="flex items-center gap-3 mb-8">
+
+      <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-red-900/50">
+        <i data-lucide="command"></i>
+      </div>
+
+      <div>
+        <h1 class="font-bold text-xl">
+          About Me OS
+        </h1>
+
+        <p class="text-xs text-slate-400">
+          Personal Operating System
+        </p>
+      </div>
+
+    </div>
+
+    <!-- MENU -->
+    <nav class="flex flex-col gap-2">
+
+      <a href="dashboard.html"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+
+        <i data-lucide="layout-dashboard"></i>
+        Dashboard
+
+      </a>
+
+      <a href="profile.html"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+
+        <i data-lucide="user"></i>
+        Profile
+
+      </a>
+
+      <a href="finance.html"
+         class="sidebar-link active flex items-center gap-3 p-4 rounded-2xl transition">
+
+        <i data-lucide="wallet"></i>
+        Finance
+
+      </a>
+
+      <a href="relasi.html"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+
+        <i data-lucide="users"></i>
+        Relasi
+
+      </a>
+
+      <a href="scanner.html"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+
+        <i data-lucide="scan"></i>
+        Scanner
+
+      </a>
+
+      <a href="ai.html"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+
+        <i data-lucide="bot"></i>
+        AI Assistant
+
+      </a>
+
+      <a href="#"
+         onclick="logout()"
+         class="sidebar-link flex items-center gap-3 p-4 rounded-2xl transition">
+
+        <i data-lucide="log-out"></i>
+        Logout
+
+      </a>
+
+    </nav>
+
+    <!-- USER -->
+    <div class="mt-auto glass rounded-3xl p-4 flex items-center gap-3">
+
+      <img
+        src="https://ui-avatars.com/api/?name=Admin+OS&background=e3000f&color=fff"
+        class="w-12 h-12 rounded-full"
+      />
+
+      <div>
+        <p class="font-semibold text-sm">
+          Admin User
+        </p>
+
+        <p class="text-xs text-slate-400">
+          Workspace Owner
+        </p>
+      </div>
+
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 p-4 md:p-8 pb-24 md:pb-8">
+
+    <!-- HEADER -->
+    <header class="glass rounded-3xl p-6 mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+      <div>
+
+        <p class="text-slate-400 text-sm">
+          Finance Workspace
+        </p>
+
+        <h1 class="text-3xl font-bold">
+          Keuangan Personal
+        </h1>
+
+      </div>
+
+      <button
+        class="bg-primary hover:bg-red-700 transition px-6 py-3 rounded-2xl font-semibold flex items-center gap-2">
+
+        <i data-lucide="plus"></i>
+        Tambah Transaksi
+
+      </button>
+
+    </header>
+
+    <!-- SUMMARY -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+
+      <!-- TOTAL -->
+      <div class="glass rounded-3xl p-6 card-hover">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div>
+
+            <p class="text-slate-400 text-sm mb-2">
+              Total Saldo
+            </p>
+
+            <h2 class="text-4xl font-bold income">
+              Rp 12.500.000
+            </h2>
+
+          </div>
+
+          <div class="w-16 h-16 rounded-2xl bg-green-500/20 flex items-center justify-center">
+            <i data-lucide="wallet" class="w-8 h-8 text-green-400"></i>
+          </div>
+
+        </div>
+
+        <p class="text-green-400 text-sm">
+          +12% bulan ini
+        </p>
+
+      </div>
+
+      <!-- INCOME -->
+      <div class="glass rounded-3xl p-6 card-hover">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div>
+
+            <p class="text-slate-400 text-sm mb-2">
+              Pemasukan
+            </p>
+
+            <h2 class="text-4xl font-bold income">
+              Rp 18.000.000
+            </h2>
+
+          </div>
+
+          <div class="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+            <i data-lucide="arrow-down-circle" class="w-8 h-8 text-blue-400"></i>
+          </div>
+
+        </div>
+
+        <p class="text-slate-400 text-sm">
+          Gaji • Bisnis • Freelance
+        </p>
+
+      </div>
+
+      <!-- EXPENSE -->
+      <div class="glass rounded-3xl p-6 card-hover">
+
+        <div class="flex items-center justify-between mb-4">
+
+          <div>
+
+            <p class="text-slate-400 text-sm mb-2">
+              Pengeluaran
+            </p>
+
+            <h2 class="text-4xl font-bold expense">
+              Rp 5.500.000
+            </h2>
+
+          </div>
+
+          <div class="w-16 h-16 rounded-2xl bg-red-500/20 flex items-center justify-center">
+            <i data-lucide="arrow-up-circle" class="w-8 h-8 text-red-400"></i>
+          </div>
+
+        </div>
+
+        <p class="text-slate-400 text-sm">
+          Operasional • Belanja • Transport
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- CHART -->
+    <section class="glass rounded-3xl p-6 mb-6 card-hover">
+
+      <div class="flex items-center justify-between mb-8">
+
+        <div>
+
+          <h2 class="text-2xl font-bold mb-2">
+            Statistik Bulanan
+          </h2>
+
+          <p class="text-slate-400">
+            Ringkasan pemasukan dan pengeluaran
+          </p>
+
+        </div>
+
+        <i data-lucide="bar-chart-3" class="w-8 h-8 text-primary"></i>
+
+      </div>
+
+      <!-- FAKE CHART -->
+      <div class="flex items-end gap-4 h-64">
+
+        <div class="flex-1 flex flex-col items-center gap-3">
+          <div class="w-full rounded-t-2xl bg-green-500/70 h-[80%]"></div>
+          <span class="text-xs text-slate-400">Jan</span>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center gap-3">
+          <div class="w-full rounded-t-2xl bg-green-500/70 h-[60%]"></div>
+          <span class="text-xs text-slate-400">Feb</span>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center gap-3">
+          <div class="w-full rounded-t-2xl bg-green-500/70 h-[90%]"></div>
+          <span class="text-xs text-slate-400">Mar</span>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center gap-3">
+          <div class="w-full rounded-t-2xl bg-green-500/70 h-[70%]"></div>
+          <span class="text-xs text-slate-400">Apr</span>
+        </div>
+
+        <div class="flex-1 flex flex-col items-center gap-3">
+          <div class="w-full rounded-t-2xl bg-green-500/70 h-[95%]"></div>
+          <span class="text-xs text-slate-400">Mei</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- TRANSACTION -->
+    <section class="glass rounded-3xl p-6 card-hover">
+
+      <div class="flex items-center justify-between mb-6">
+
+        <div>
+
+          <h2 class="text-2xl font-bold mb-2">
+            Transaksi Terakhir
+          </h2>
+
+          <p class="text-slate-400">
+            Aktivitas keuangan terbaru
+          </p>
+
+        </div>
+
+        <button class="glass px-5 py-3 rounded-2xl hover:bg-white/10 transition">
+          Lihat Semua
+        </button>
+
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- ITEM -->
+        <div class="glass rounded-2xl p-4 flex items-center justify-between">
+
+          <div class="flex items-center gap-4">
+
+            <div class="w-14 h-14 rounded-2xl bg-green-500/20 flex items-center justify-center">
+              <i data-lucide="briefcase" class="text-green-400"></i>
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold">
+                Gaji Bulanan
+              </h3>
+
+              <p class="text-sm text-slate-400">
+                30 Mei 2026
+              </p>
+
+            </div>
+
+          </div>
+
+          <h3 class="font-bold income">
+            + Rp 8.000.000
+          </h3>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="glass rounded-2xl p-4 flex items-center justify-between">
+
+          <div class="flex items-center gap-4">
+
+            <div class="w-14 h-14 rounded-2xl bg-red-500/20 flex items-center justify-center">
+              <i data-lucide="shopping-cart" class="text-red-400"></i>
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold">
+                Belanja Bulanan
+              </h3>
+
+              <p class="text-sm text-slate-400">
+                29 Mei 2026
+              </p>
+
+            </div>
+
+          </div>
+
+          <h3 class="font-bold expense">
+            - Rp 1.200.000
+          </h3>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="glass rounded-2xl p-4 flex items-center justify-between">
+
+          <div class="flex items-center gap-4">
+
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+              <i data-lucide="car" class="text-blue-400"></i>
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold">
+                Transportasi
+              </h3>
+
+              <p class="text-sm text-slate-400">
+                28 Mei 2026
+              </p>
+
+            </div>
+
+          </div>
+
+          <h3 class="font-bold expense">
+            - Rp 350.000
+          </h3>
+
+        </div>
+
+        <!-- ITEM -->
+        <div class="glass rounded-2xl p-4 flex items-center justify-between">
+
+          <div class="flex items-center gap-4">
+
+            <div class="w-14 h-14 rounded-2xl bg-purple-500/20 flex items-center justify-center">
+              <i data-lucide="laptop" class="text-purple-400"></i>
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold">
+                Freelance Project
+              </h3>
+
+              <p class="text-sm text-slate-400">
+                27 Mei 2026
+              </p>
+
+            </div>
+
+          </div>
+
+          <h3 class="font-bold income">
+            + Rp 2.500.000
+          </h3>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav md:hidden fixed bottom-0 left-0 right-0 glass border-t border-white/10 z-50">
+
+  <div class="grid grid-cols-5 h-20">
+
+    <a href="dashboard.html"
+       class="flex flex-col items-center justify-center gap-1 text-slate-400">
+
+      <i data-lucide="layout-dashboard"></i>
+
+      <span class="text-xs">
+        Home
+      </span>
+
+    </a>
+
+    <a href="finance.html"
+       class="flex flex-col items-center justify-center gap-1 text-white active">
+
+      <i data-lucide="wallet"></i>
+
+      <span class="text-xs">
+        Finance
+      </span>
+
+    </a>
+
+    <a href="scanner.html"
+       class="flex flex-col items-center justify-center gap-1 text-slate-400">
+
+      <i data-lucide="scan"></i>
+
+      <span class="text-xs">
+        Scan
+      </span>
+
+    </a>
+
+    <a href="ai.html"
+       class="flex flex-col items-center justify-center gap-1 text-slate-400">
+
+      <i data-lucide="bot"></i>
+
+      <span class="text-xs">
+        AI
+      </span>
+
+    </a>
+
+    <a href="profile.html"
+       class="flex flex-col items-center justify-center gap-1 text-slate-400">
+
+      <i data-lucide="user"></i>
+
+      <span class="text-xs">
+        Profile
+      </span>
+
+    </a>
+
+  </div>
+
+</nav>
+
+<script>
+
+  lucide.createIcons();
+
+  // LOGIN CHECK
+  if(localStorage.getItem('os_login') !== 'true'){
+
+    window.location.href = 'login.html';
+
+  }
+
+  // LOGOUT
+  function logout(){
+
+    localStorage.removeItem('os_login');
+
+    window.location.href = 'login.html';
+
+  }
+
+  // PWA
+  if ('serviceWorker' in navigator) {
+
+    navigator.serviceWorker.register('./sw.js');
+
+  }
+
+</script>
+
+</body>
+</html>
